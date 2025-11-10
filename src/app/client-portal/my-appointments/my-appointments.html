@@ -1,0 +1,30 @@
+<div class="container py-3">
+  <h3>Mis Citas</h3>
+  <table class="table table-hover" *ngIf="appts$ | async as appts; else loading">
+    <thead>
+      <tr>
+        <th>Fecha</th>
+        <th>Veterinario</th>
+        <th>Motivo</th>
+        <th>Estado</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let a of appts" [appHighlightUpcoming]="a.start">
+        <td>{{ a.start | dateRange:a.end }}</td>
+        <td>#{{ a.vetId }}</td>
+        <td>{{ a.reason || '-' }}</td>
+        <td>{{ a.status | appointmentStatus }}</td>
+        <td class="text-end">
+          <button class="btn btn-sm btn-outline-danger" (click)="cancel(a)" [disabled]="!canCancel(a)">
+            Cancelar
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #loading>
+    <div class="text-muted">Cargando...</div>
+  </ng-template>
+</div>

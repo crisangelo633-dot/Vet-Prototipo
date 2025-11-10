@@ -1,0 +1,48 @@
+<p>pet-form works!</p>
+
+<form [formGroup]="form" (ngSubmit)="submit()" style="display:grid;grid-template-columns:repeat(2,1fr);gap:12px;max-width:800px;">
+  <label>Dueño
+    <select formControlName="ownerId">
+      <option [ngValue]="null">Selecciona un dueño</option>
+      <option *ngFor="let o of (owners$ | async)" [ngValue]="o.id">{{ o.name }} ({{ o.phone }})</option>
+    </select>
+  </label>
+  <label>Nombre de la mascota
+    <input type="text" formControlName="name" />
+  </label>
+  <label>Especie
+    <select formControlName="species">
+      <option value="perro">Perro</option>
+      <option value="gato">Gato</option>
+      <option value="ave">Ave</option>
+      <option value="reptil">Reptil</option>
+      <option value="otro">Otro</option>
+    </select>
+  </label>
+  <label>Raza
+    <input type="text" formControlName="breed" />
+  </label>
+  <label>Sexo
+    <select formControlName="sex">
+      <option value="">Sin especificar</option>
+      <option value="macho">Macho</option>
+      <option value="hembra">Hembra</option>
+    </select>
+  </label>
+  <label>Fecha de nacimiento
+    <input type="date" formControlName="birthDate" />
+  </label>
+  <label>Peso (kg)
+    <input type="number" step="0.01" formControlName="weightKg" />
+  </label>
+  <label style="display:flex;gap:8px;align-items:center;">Esterilizado
+    <input type="checkbox" formControlName="neutered" />
+  </label>
+  <label style="grid-column:1/3;">Notas
+    <textarea formControlName="notes" rows="3"></textarea>
+  </label>
+  <div style="grid-column:1/3;display:flex;gap:12px;">
+    <button type="submit" [disabled]="saving || form.invalid">Guardar</button>
+    <button type="button" (click)="form.reset({ species: 'perro', neutered: false })">Limpiar</button>
+  </div>
+</form>

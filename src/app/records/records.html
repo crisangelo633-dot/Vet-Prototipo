@@ -1,0 +1,39 @@
+<div class="container" style="max-width:900px;">
+  <h3 class="mb-3">Historial de atención</h3>
+
+  <div class="row g-3 align-items-end mb-3">
+    <div class="col-sm-6">
+      <label class="form-label">Mascota</label>
+      <select class="form-select" (change)="onPetChange($any($event.target).value)">
+        <option [value]="''">Seleccione</option>
+        <option *ngFor="let p of (pets$ | async)" [value]="p.id">{{ p.name }} (ID: {{ p.id }})</option>
+      </select>
+    </div>
+  </div>
+
+  <div *ngIf="(records$ | async) as recs">
+    <div class="table-responsive">
+      <table class="table table-sm align-middle">
+        <thead>
+          <tr>
+            <th style="width:160px;">Fecha</th>
+            <th>Síntomas</th>
+            <th>Diagnóstico</th>
+            <th>Tratamiento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let r of recs">
+            <td>{{ r.date | date:'medium' }}</td>
+            <td>{{ r.symptoms || '-' }}</td>
+            <td>{{ r.diagnosis || '-' }}</td>
+            <td>{{ r.treatment || '-' }}</td>
+          </tr>
+          <tr *ngIf="recs.length === 0">
+            <td colspan="4" class="text-muted">Sin registros</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

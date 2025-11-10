@@ -1,0 +1,24 @@
+<div class="container py-3">
+  <h3>Mis Mascotas</h3>
+  <table class="table table-striped" *ngIf="pets$ | async as pets; else loading">
+    <thead>
+      <tr>
+        <th>Nombre</th>
+        <th>Especie</th>
+        <th>Raza</th>
+        <th>Peso (kg)</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let p of pets">
+        <td>{{ p.name }}</td>
+        <td>{{ p.species }}</td>
+        <td>{{ p.breed || '-' }}</td>
+        <td>{{ p.weightKg || '-' }}</td>
+      </tr>
+    </tbody>
+  </table>
+  <ng-template #loading>
+    <div class="text-muted">Cargando...</div>
+  </ng-template>
+</div>

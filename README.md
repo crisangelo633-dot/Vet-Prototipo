@@ -1,59 +1,69 @@
-# VetClinic
+# Vet Clinic – Setup y Ejecución
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 20.3.9.
+Aplicación Angular con UI tipo dashboard (sidebar/topbar), login con roles y funciones principales: Citas, Dueños, Mascotas e Historial. Usa una API mock (json-server) y también guarda en `localStorage` como respaldo para la demo.
 
-## Development server
+## Requisitos
+- Node.js 18+
+- npm 9+
 
-To start a local development server, run:
-
+## 1) Instalar dependencias
 ```bash
-ng serve
+npm ci
 ```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
-
-## Code scaffolding
-
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
-
+## 2) Iniciar API mock (json-server)
 ```bash
-ng generate component component-name
+npm run api
+# La API queda en http://localhost:3001
+```
+Datos iniciales en `db.json` (vets, owners, pets, appointments, records, users).
+
+## 3) Iniciar frontend (Angular)
+```bash
+npm start
+# Navegar a http://localhost:4200
+```
+Si ya hay algo usando 4200, puedes usar 4201:
+```bash
+npx ng serve --port 4201 --host localhost
+# http://localhost:4201
 ```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+## Credenciales de prueba
+- admin / admin123 (admin)
+- recep / recep123 (recep)
+- vet / vet123 (vet)
 
-```bash
-ng generate --help
-```
+## Rutas principales
+- `/auth` Login
+- `/dashboard` Inicio (tiles)
+- `/appointments` Citas (FullCalendar)
+- `/owners` Registrar dueños
+- `/pets` Registrar mascotas
+- `/records` Historial por mascota
 
-## Building
+## Funcionalidades clave
+- Login con roles (admin/recep/vet) y rutas protegidas.
+- Sidebar con visibilidad por rol.
+- Citas: crear, validar solapamientos, guardar en API y en `localStorage` (`appointments_local`). Toasts de confirmación.
+- Dueños/Mascotas: formularios con guardado en API y espejo en `localStorage` (`owners_local`, `pets_local`). Toasts de confirmación.
+- Historial: selector de mascota y tabla. Combina API con `localStorage` (`records_local`).
 
-To build the project run:
+## Estilos/Recursos
+- Tipografía: Inter (Google Fonts)
+- Iconos: Bootstrap Icons
+- FullCalendar y Bootstrap CSS cargados por CDN en `src/index.html` (evita problemas de bundling).
 
-```bash
-ng build
-```
+## Troubleshooting
+- “CSS de FullCalendar no resuelve”: se usan CDN en `src/index.html`. No incluir `@fullcalendar/.../index.css` en `angular.json`.
+- “localStorage is not defined”: ya se manejó para SSR; si llegas a ver esto, refresca en modo browser (no SSR) con `ng serve`.
+- Server no levanta en 4200: usa 4201 (`--port 4201`).
+- API sin datos nuevos: revisa `db.json` y reinicia `npm run api`.
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+## Scripts útiles
+- `npm run api` Inicia json-server en 3001
+- `npm start` Inicia Angular en 4200
+- `ng build` Compila el frontend
 
-## Running unit tests
-
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+## Notas
+- Para la demo, las entidades también se guardan en `localStorage` para no perder datos si la API falla.

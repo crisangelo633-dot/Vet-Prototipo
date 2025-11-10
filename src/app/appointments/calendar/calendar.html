@@ -1,0 +1,50 @@
+<div class="calendar-header" style="display:flex;gap:12px;align-items:center;margin-bottom:12px;">
+  <label for="vetSelect">Veterinario:</label>
+  <select id="vetSelect" (change)="onVetChange($any($event.target).value)">
+    <option value="all">Todos</option>
+    <option *ngFor="let v of (vets$ | async)" [value]="v.id">{{ v.name }}</option>
+  </select>
+</div>
+<full-calendar [options]="calendarOptions"></full-calendar>
+
+<!-- Modal de creación de cita (Bootstrap sin JS) -->
+<div class="modal fade" [class.show]="modalOpen" [style.display]="modalOpen ? 'block' : 'none'" tabindex="-1" role="dialog" aria-modal="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Nueva cita</h5>
+        <button type="button" class="btn-close" aria-label="Close" (click)="cancelCreate()"></button>
+      </div>
+      <form [formGroup]="form" (ngSubmit)="submitCreate()">
+        <div class="modal-body" style="display:grid;gap:12px;">
+          <div>
+            <label class="form-label">Veterinario</label>
+            <select class="form-select" formControlName="vetId">
+              <option [ngValue]="null">Seleccione</option>
+              <option *ngFor="let v of (vets$ | async)" [ngValue]="v.id">{{ v.name }}</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label">Mascota</label>
+            <select class="form-select" formControlName="petId">
+              <option [ngValue]="null">Seleccione</option>
+              <option *ngFor="let p of (pets$ | async)" [ngValue]="p.id">{{ p.name }}</option>
+            </select>
+          </div>
+          <div>
+            <label class="form-label">Motivo</label>
+            <input class="form-control" type="text" formControlName="reason" placeholder="Motivo opcional" />
+          </div>
+          <div class="text-muted">
+            {{ startIso | dateRange:endIso }}
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="cancelCreate()">Cancelar</button>
+          <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Crear</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop fade" [class.show]="modalOpen" *ngIf="modalOpen"></div>

@@ -1,0 +1,10 @@
+<header class="topbar d-flex align-items-center justify-content-between px-3">
+  <div class="brand d-flex align-items-center gap-2">
+    <button class="btn btn-sm btn-outline-light d-md-none" (click)="$event.stopPropagation()">☰</button>
+    <strong>Centro Veterinario</strong>
+  </div>
+  <div class="actions d-flex align-items-center gap-3">
+    <span class="text-light small" *ngIf="user() as u">{{ u.name }} ({{ u.role }})</span>
+    <button class="btn btn-sm btn-light" (click)="logout()">Salir</button>
+  </div>
+</header>

@@ -1,0 +1,5 @@
+.sidebar{padding:12px}
+.sidebar .menu .menu-item{padding:8px 10px}
+.sidebar .menu .menu-item a{display:flex;align-items:center;gap:8px;color:#cfd3da;text-decoration:none}
+.sidebar .menu .menu-item.active, .sidebar .menu .menu-item:hover{background:#3a4153}
+.sidebar .menu .menu-item.disabled{opacity:.5;cursor:not-allowed}

@@ -1,0 +1,182 @@
+{
+  "meta": {
+    "timezone": "America/Lima",
+    "slotMinutes": 30,
+    "workDays": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "workHours": {
+      "start": "08:00",
+      "end": "18:00"
+    }
+  },
+  "vets": [
+    {
+      "id": 1,
+      "name": "Dra. Valeria Ramos",
+      "specialty": "Medicina General"
+    },
+    {
+      "id": 2,
+      "name": "Dr. Miguel Torres",
+      "specialty": "Vacunación"
+    }
+  ],
+  "owners": [
+    {
+      "id": 1,
+      "name": "Ana Pérez",
+      "phone": "+51 999 111 222",
+      "email": "ana.perez@example.com"
+    },
+    {
+      "id": 2,
+      "name": "Carlos Gómez",
+      "phone": "+51 988 333 444",
+      "email": "carlos.gomez@example.com"
+    },
+    {
+      "id": "95a1",
+      "name": "cris",
+      "phone": "961680002",
+      "email": "lalala64@gmailc.om"
+    }
+  ],
+  "pets": [
+    {
+      "id": 1,
+      "ownerId": 1,
+      "name": "Rocky",
+      "species": "perro",
+      "breed": "Labrador",
+      "sex": "macho",
+      "birthDate": "2021-05-10",
+      "weightKg": 28.4,
+      "neutered": false
+    },
+    {
+      "id": 2,
+      "ownerId": 1,
+      "name": "Michi",
+      "species": "gato",
+      "breed": "Siames",
+      "sex": "hembra",
+      "birthDate": "2022-02-14",
+      "weightKg": 3.9,
+      "neutered": true
+    },
+    {
+      "id": 3,
+      "ownerId": 2,
+      "name": "Paco",
+      "species": "ave",
+      "breed": "Perico",
+      "sex": "macho",
+      "birthDate": "2020-09-01",
+      "weightKg": 0.12,
+      "neutered": false
+    }
+  ],
+  "appointments": [
+    {
+      "id": 1,
+      "petId": 1,
+      "vetId": 1,
+      "start": "2025-11-10T09:00:00",
+      "end": "2025-11-10T09:30:00",
+      "reason": "Chequeo general",
+      "status": "confirmada"
+    },
+    {
+      "id": 2,
+      "petId": 2,
+      "vetId": 2,
+      "start": "2025-11-10T10:00:00",
+      "end": "2025-11-10T10:30:00",
+      "reason": "Vacunación",
+      "status": "programada"
+    },
+    {
+      "id": "9580",
+      "petId": 2,
+      "vetId": 1,
+      "start": "2025-11-11T08:00:00-05:00",
+      "end": "2025-11-11T08:30:00",
+      "reason": "control rutinario",
+      "status": "programada"
+    },
+    {
+      "id": "4505",
+      "petId": 1,
+      "vetId": 1,
+      "start": "2025-11-11T08:30:00-05:00",
+      "end": "2025-11-11T09:00:00",
+      "reason": "asda",
+      "status": "programada"
+    },
+    {
+      "id": "3dbc",
+      "petId": 1,
+      "vetId": 1,
+      "start": "2025-11-10T08:00:00-05:00",
+      "end": "2025-11-10T08:30:00",
+      "reason": "aera",
+      "status": "programada"
+    },
+    {
+      "id": "9c57",
+      "petId": 2,
+      "vetId": 1,
+      "start": "2025-11-11T10:30:00-05:00",
+      "end": "2025-11-11T11:00:00",
+      "reason": "Chequeo general",
+      "status": "programada"
+    }
+  ],
+  "records": [
+    {
+      "id": 1,
+      "petId": 1,
+      "appointmentId": 1,
+      "date": "2025-11-10T09:30:00",
+      "symptoms": "Control preventivo",
+      "diagnosis": "Sano",
+      "treatment": "Desparasitación",
+      "vaccines": [
+        {
+          "name": "Antirrábica",
+          "dose": "2 ml"
+        }
+      ],
+      "attachments": []
+    }
+  ],
+  "users": [
+    {
+      "id": 1,
+      "username": "admin",
+      "password": "admin123",
+      "role": "admin",
+      "name": "Administrador"
+    },
+    {
+      "id": 2,
+      "username": "recep",
+      "password": "recep123",
+      "role": "recep",
+      "name": "Recepción"
+    },
+    {
+      "id": 3,
+      "username": "vet",
+      "password": "vet123",
+      "role": "vet",
+      "name": "Veterinario"
+    }
+  ]
+}

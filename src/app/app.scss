@@ -1,0 +1,17 @@
+:host { display: block; }
+
+.app-shell {
+  display: grid;
+  grid-template-columns: 240px 1fr;
+  min-height: calc(100vh - 56px);
+}
+
+.app-sidebar {
+  background-color: #2f3443;
+  color: #cfd3da;
+}
+
+.app-content {
+  background: #f6f8fb;
+  padding: 16px;
+}
